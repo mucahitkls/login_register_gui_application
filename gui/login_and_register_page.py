@@ -1,4 +1,5 @@
 from .common_functions import *
+from services import check_user, register_user
 
 
 class LoginAndRegisterPage(tk.Frame):
@@ -42,14 +43,23 @@ class LoginAndRegisterPage(tk.Frame):
         # Placeholder for login logic
         username = self.username_entry.get()
         password = self.password_entry.get()
-        print("Attempt to login with:", username, password)
+        if check_user(username, password):
+            print('Login successfull')
+            return True
+        print('Login failed')
+        return False
 
     def register_db(self):
         username = self.username_entry.get()
         password = self.password_entry.get()
         approval = self.approval_entry.get() if self.page_type == 'Register' else None
-        print("Attempt to register with:", username, password, "Approval:", approval)
-        # Implement your registration logic here
+        if username and password:
+            if register_user(username=username, password=password):
+                print('Registration Successfully done')
+                self.clear_and_go_back()
+                return True
+            print("Registration failed")
+            return False
 
     def clear_and_go_back(self):
         self.pack_forget()

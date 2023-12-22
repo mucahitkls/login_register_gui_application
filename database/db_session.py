@@ -6,7 +6,7 @@ from configparser import ConfigParser
 
 def get_db_url():
     config = ConfigParser()
-    config.read('..\\app.config')
+    config.read('..\\login_gui_with_tkinter\\app.config')
     return config['database']['DB_URL']
 
 
