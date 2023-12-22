@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
+from .common_functions import *
+
 
 class RegisterPage(tk.Frame):
     def __init__(self, parent, go_to_welcome):

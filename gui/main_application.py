@@ -1,7 +1,8 @@
 import tkinter as tk
-from tkinter import ttk, PhotoImage
-from .login_page import LoginPage
+from tkinter import ttk, PhotoImage, COMMAND
+from .login_page import LoginAndRegisterPage
 from .register_page import RegisterPage
+from .common_functions import *
 
 
 class MainApplication:
@@ -16,15 +17,15 @@ class MainApplication:
         self.welcome_label = self.create_welcome_label()
 
         # Add logo here
-        self.logo_image = PhotoImage(file='custom/images/login_system_logo.png')
+        self.logo_image = PhotoImage(file=LOGO_PATH)
         self.logo = self.create_logo()
 
-        self.login_button = self.create_login_button()
-        self.register_button = self.create_register_button()
-        self.about_button = self.create_about_button()
+        self.login_button = self.create_button(text="Login", style="BW.TButton", command=self.login)
+        self.register_button = self.create_button(text="Register", style="BW.TButton", command=self.register)
+        self.about_button = self.create_button(text="About", style="BW.TButton", command=self.about)
 
-        self.login_page = LoginPage(self.root, self.show_welcome_page)
-        self.register_page = RegisterPage(self.root, self.show_welcome_page)
+        self.login_page = LoginAndRegisterPage(self.root, self.show_welcome_page, type='Login Page')
+        self.register_page = LoginAndRegisterPage(self.root, self.show_welcome_page, type='Register Page')
 
         self.show_welcome_page()
 
@@ -36,50 +37,30 @@ class MainApplication:
         self.about_button.pack()
 
     def create_welcome_label(self):
-        style1 = ttk.Style()
-        style1.configure("BW.TLabel", foreground="#b07a4b", background="black")
-        welcome_label = ttk.Label(self.root, text="Welcome to Login System", style="BW.TLabel",
-                                  font=('Arial Bold', 40))
+        welcome_label = ttk.Label(self.root, text="Welcome to Login System", style="BW.TLabel", font=('Arial Bold', 40))
         return welcome_label
 
     def create_logo(self):
-        logo = ttk.Label(self.root, image=self.logo_image, background='black', )
+        logo = ttk.Label(self.root, image=self.logo_image, background='black')
         return logo
 
     @staticmethod
     def configure_styles():
         style = ttk.Style()
-        style.configure("BW.TButton", foreground="green", background="black")
-        style.configure("BW.TLabel", foreground="#b07a4b", background="black")
+        style.configure("BW.TButton", foreground=MAIN_BUTTON_COLOR, background=MAIN_BG_COLOR, font=('Arial', 12))
+        style.configure("BW.TLabel", foreground=LOGO_COLOR, background=MAIN_BG_COLOR)
+        style.configure("BW.TEntry", foreground=LOGO_COLOR, background=MAIN_BG_COLOR)
+        style.configure("BW.TRadiobutton", foreground=LOGO_COLOR, background=MAIN_BG_COLOR)
+        style.configure("BW.TRegister", foreground=LOGO_COLOR, background=MAIN_BG_COLOR)
+        style.configure("BW.TBack", foreground=LOGO_COLOR, background=MAIN_BG_COLOR)
 
-    def create_login_button(self):
-        # style2 = ttk.Style()
-        # style2.configure("BW.TButton", foreground="green", background="black")
-        login_button = ttk.Button(self.root, text="Login", style="BW.TButton", command=self.login)
-        return login_button
-
-    def create_register_button(self):
-        # style2 = ttk.Style()
-        # style2.configure("BW.TButton", foreground="green", background="black")
-        register_button = ttk.Button(self.root, text="Register", style="BW.TButton", command=self.register)
-        return register_button
-
-    def create_about_button(self):
-        # style2 = ttk.Style()
-        # style2.configure("BW.TButton", foreground="green", background="black")
-        about_button = ttk.Button(self.root, text="About", command=self.about)
-        return about_button
+    def create_button(self, text: str, style: str, command: COMMAND):
+        button = ttk.Button(self.root, text=text, style=style, command=command)
+        return button
 
     def hide_all_frames(self):
         for widget in self.root.winfo_children():
             widget.pack_forget()
-
-    def go_back_to_welcome(self):
-        if self.current_page == "login":
-            self.login_page.clear_and_go_back()
-        elif self.current_page == "register":
-            self.register_page.clear_and_go_back()
-        self.show_welcome_page()
 
     def login(self):
         self.hide_all_frames()
@@ -92,4 +73,4 @@ class MainApplication:
         self.register_page.pack(fill='both', expand=True)
 
     def about(self):
-        ...
+        print("about")
