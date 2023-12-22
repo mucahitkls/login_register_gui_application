@@ -1,5 +1,3 @@
-import tkinter as tk
-from tkinter import ttk, COMMAND, PhotoImage
 from .common_functions import *
 
 
@@ -14,7 +12,7 @@ class LoginAndRegisterPage(tk.Frame):
         self.logo_image = PhotoImage(file=LOGO_PATH)
         self.logo = ttk.Label(self, image=self.logo_image, background='black')
         self.logo.pack()
-        ttk.Label(self, text=f"{page_type} to your account", style="BW.TLabel", font=("Arial", 12)).pack()
+        ttk.Label(self, text=f"{page_type} to your account", style="BW.TLabel", font=("Arial", 14)).pack()
 
         # Add username and password fields, labels, and buttons
         self.user_label, self.username_entry = self.create_label_and_entry('Username')
@@ -27,18 +25,9 @@ class LoginAndRegisterPage(tk.Frame):
         self.initiate_widgets()
 
     def create_label_and_entry(self, text: str):
-        label = ttk.Label(self, text=text, style="BW.TLabel")
+        label = ttk.Label(self, text=text, style="BW.TLabel", font=('Arial', 11))
         entry = ttk.Entry(self, style="BW.TEntry")
         return label, entry
-
-    def create_button(self, text: str, command: COMMAND):
-        button = ttk.Button(self, text=text, style="BW.TButton", command=command)
-        return button
-
-    def create_logo(self):
-        logo = ttk.Label(self, image=self.logo_image, background='black')
-
-        return logo
 
     def initiate_widgets(self):
         widgets = [self.user_label, self.username_entry, self.password_label, self.password_entry]

@@ -1,7 +1,5 @@
-import tkinter as tk
-from tkinter import ttk, PhotoImage, COMMAND
+from tkinter import COMMAND
 from .login_and_register_page import LoginAndRegisterPage
-from .register_page import RegisterPage
 from .common_functions import *
 
 
