@@ -1,5 +1,6 @@
 from .common_functions import *
 from services import check_user, register_user
+from tkinter import messagebox
 
 
 class LoginAndRegisterPage(tk.Frame):
@@ -44,9 +45,9 @@ class LoginAndRegisterPage(tk.Frame):
         username = self.username_entry.get()
         password = self.password_entry.get()
         if check_user(username, password):
-            print('Login successfull')
+            messagebox.showinfo("Success", "Login Successful")
             return True
-        print('Login failed')
+        messagebox.showerror("Failure", "Login Failed")
         return False
 
     def register_db(self):
@@ -55,10 +56,10 @@ class LoginAndRegisterPage(tk.Frame):
         approval = self.approval_entry.get() if self.page_type == 'Register' else None
         if username and password:
             if register_user(username=username, password=password):
-                print('Registration Successfully done')
+                messagebox.showinfo("Success", "Registration successfully done")
                 self.clear_and_go_back()
                 return True
-            print("Registration failed")
+            messagebox.showerror("Failure", "Registration failed")
             return False
 
     def clear_and_go_back(self):
