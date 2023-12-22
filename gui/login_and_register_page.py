@@ -46,6 +46,8 @@ class LoginAndRegisterPage(tk.Frame):
         password = self.password_entry.get()
         if check_user(username, password):
             messagebox.showinfo("Success", "Login Successful")
+            self.clear_entry()
+            self.clear_and_go_back()
             return True
         messagebox.showerror("Failure", "Login Failed")
         return False
@@ -57,6 +59,7 @@ class LoginAndRegisterPage(tk.Frame):
         if username and password:
             if register_user(username=username, password=password):
                 messagebox.showinfo("Success", "Registration successfully done")
+                self.clear_entry()
                 self.clear_and_go_back()
                 return True
             messagebox.showerror("Failure", "Registration failed")
@@ -65,3 +68,7 @@ class LoginAndRegisterPage(tk.Frame):
     def clear_and_go_back(self):
         self.pack_forget()
         self.go_back()
+
+    def clear_entry(self):
+        self.username_entry.delete(0, 'end')
+        self.password_entry.delete(0, 'end')
