@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, PhotoImage, COMMAND
-from .login_page import LoginAndRegisterPage
+from .login_and_register_page import LoginAndRegisterPage
 from .register_page import RegisterPage
 from .common_functions import *
 
@@ -24,8 +24,8 @@ class MainApplication:
         self.register_button = self.create_button(text="Register", style="BW.TButton", command=self.register)
         self.about_button = self.create_button(text="About", style="BW.TButton", command=self.about)
 
-        self.login_page = LoginAndRegisterPage(self.root, self.show_welcome_page, type='Login Page')
-        self.register_page = LoginAndRegisterPage(self.root, self.show_welcome_page, type='Register Page')
+        self.login_page = LoginAndRegisterPage(self.root, self.show_welcome_page, page_type='Login')
+        self.register_page = LoginAndRegisterPage(self.root, self.show_welcome_page, page_type='Register')
 
         self.show_welcome_page()
 
