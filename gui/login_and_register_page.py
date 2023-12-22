@@ -47,7 +47,7 @@ class LoginAndRegisterPage(tk.Frame):
         widgets += [self.login_or_register_button, self.back_button]
 
         for widget in widgets:
-            widget.pack()
+            widget.pack(pady=4)
 
     def login(self):
         # Placeholder for login logic

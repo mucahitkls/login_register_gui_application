@@ -30,11 +30,11 @@ class MainApplication:
         self.show_welcome_page()
 
     def show_welcome_page(self):
-        self.welcome_label.pack()
-        self.logo.pack()
-        self.login_button.pack()
-        self.register_button.pack()
-        self.about_button.pack()
+        self.welcome_label.pack(pady=5)
+        self.logo.pack(pady=5)
+        self.login_button.pack(pady=5)
+        self.register_button.pack(pady=5)
+        self.about_button.pack(pady=5)
 
     def create_welcome_label(self):
         welcome_label = ttk.Label(self.root, text="Welcome to Login System", style="BW.TLabel", font=('Arial Bold', 40))
@@ -50,9 +50,6 @@ class MainApplication:
         style.configure("BW.TButton", foreground=MAIN_BUTTON_COLOR, background=MAIN_BG_COLOR, font=('Arial', 12))
         style.configure("BW.TLabel", foreground=LOGO_COLOR, background=MAIN_BG_COLOR)
         style.configure("BW.TEntry", foreground=LOGO_COLOR, background=MAIN_BG_COLOR)
-        style.configure("BW.TRadiobutton", foreground=LOGO_COLOR, background=MAIN_BG_COLOR)
-        style.configure("BW.TRegister", foreground=LOGO_COLOR, background=MAIN_BG_COLOR)
-        style.configure("BW.TBack", foreground=LOGO_COLOR, background=MAIN_BG_COLOR)
 
     def create_button(self, text: str, style: str, command: COMMAND):
         button = ttk.Button(self.root, text=text, style=style, command=command)
